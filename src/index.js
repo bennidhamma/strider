@@ -1,11 +1,12 @@
 import React from 'react'
 import { render } from 'react-dom'
 import Button from 'material-ui/Button'
-import { getUsers } from './firebase'
-import { withStyles } from 'material-ui'
 import { initMap} from './map'
+import { getUsers } from './db'
+import { withStyles } from 'material-ui'
+import Login from './login'
 
-// getUsers()
+getUsers()
 window.initMap = initMap
 
 const styles = theme => ({
@@ -30,6 +31,7 @@ function App({classes}) {
         <Button variant="raised" color="primary">
           Hello world 7
         </Button>
+        <Login/>
       </div>
   );
 }

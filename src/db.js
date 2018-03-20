@@ -18,6 +18,8 @@ if (!window.firebaseInitialized) {
 }
 const db = firebase.firestore()
 
+console.log('firebase auth: ', firebase.auth())
+
 export function addUser() {
   // Add a second document with a generated ID.
   db.collection("users").add({
