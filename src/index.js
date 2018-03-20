@@ -1,13 +1,20 @@
 import React from 'react'
 import { render } from 'react-dom'
 import Button from 'material-ui/Button'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 import { initMap} from './map'
 import { getUsers } from './db'
 import { withStyles } from 'material-ui'
 import Login from './login'
+import reducers from './reducers'
 
-getUsers()
+// getUsers()
+var user = localStorage.user ? JSON.parse(localStorage.user) : null
 window.initMap = initMap
+window.store = createStore(reducers, {
+  user
+})
 
 const styles = theme => ({
   '@global': {
@@ -38,4 +45,6 @@ function App({classes}) {
 
 const StyledApp = withStyles(styles)(App)
 
-render(<StyledApp />, document.querySelector('#app'));
+render(<Provider store={window.store}>
+  <StyledApp />
+</Provider>, document.querySelector('#app'));
